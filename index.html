@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Be My Valentine 💖</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family:Arial, sans-serif;
+    overflow:hidden;
+    text-align:center;
+}
+
+/* First Page */
+#firstPage{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+h1{
+    font-size:40px;
+    color:white;
+    text-shadow:0 0 15px rgba(255,255,255,0.8);
+}
+
+button{
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    margin:10px;
+    transition:0.3s;
+}
+
+#yes{
+    background-color:#ff4d6d;
+    color:white;
+}
+
+#yes:hover{
+    transform:scale(1.1);
+}
+
+#no{
+    background-color:#444;
+    color:white;
+    position:absolute;
+}
+
+/* Falling Hearts */
+.heart{
+    position:absolute;
+    color:white;
+    font-size:20px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    0%{ transform:translateY(-10vh); opacity:1; }
+    100%{ transform:translateY(110vh); opacity:0; }
+}
+
+/* Second Page */
+#secondPage{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    width:100%;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    position:absolute;
+    top:0;
+    left:0;
+    animation:fadeIn 1.5s ease-in-out;
+}
+
+/* Glass effect card */
+.loveCard{
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(10px);
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 0 30px rgba(255,255,255,0.4);
+    animation:zoomIn 1.5s ease-in-out;
+}
+
+.loveText{
+    font-size:32px;
+    color:white;
+    text-shadow:0 0 15px rgba(255,255,255,0.9);
+}
+
+.hearts{
+    font-size:45px;
+    animation:float 2s infinite alternate;
+}
+
+/* Teddy GIF Styling */
+.gifContainer{
+    margin-top:25px;
+    display:flex;
+    gap:20px;
+}
+
+.gifContainer img{
+    width:150px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(255,255,255,0.6);
+    transition:0.4s;
+}
+
+.gifContainer img:hover{
+    transform:scale(1.1);
+}
+
+/* Animations */
+@keyframes float{
+    from{ transform:translateY(0px); }
+    to{ transform:translateY(-25px); }
+}
+
+@keyframes fadeIn{
+    from{ opacity:0; }
+    to{ opacity:1; }
+}
+
+@keyframes zoomIn{
+    from{ transform:scale(0); }
+    to{ transform:scale(1); }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- First Page -->
+<div id="firstPage">
+    <h1>Will You Be My Valentine? 💖</h1>
+    <div>
+        <button id="yes" onclick="showSecondPage()">Yes 💕</button>
+        <button id="no" onmouseover="moveNo()">No 😢</button>
+    </div>
+</div>
+
+<!-- Second Page -->
+<div id="secondPage">
+    <div class="loveCard">
+        <div class="hearts">💖✨💖</div>
+        <p class="loveText">
+            You said YES! 💕<br><br>
+            You are my forever, my always, my sweetest love 💍💖<br>
+            Every heartbeat of mine belongs to you 🥰✨
+        </p>
+        <div class="hearts">💘💘💘</div>
+
+        <!-- Teddy Kissing GIFs -->
+        <div class="gifContainer">
+            <img src="Gif1.gif">
+            <img src="Gif2.gif">
+            <img src="Gif3.gif">
+            <img src="Gif4.webp">
+            <img src="Gif5.gif">
+        </div>
+    </div>
+</div>
+
+<script>
+
+/* Move No Button (UNCHANGED) */
+function moveNo(){
+    var button = document.getElementById("no");
+    var x = Math.random() * (window.innerWidth - 100);
+    var y = Math.random() * (window.innerHeight - 50);
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+}
+
+function showSecondPage(){
+    document.getElementById("firstPage").style.display = "none";
+    document.getElementById("secondPage").style.display = "flex";
+}
+
+/* Continuous Falling Hearts */
+function createHeart(){
+    var heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(function(){
+        heart.remove();
+    },5000);
+}
+
+setInterval(createHeart, 300);
+
+</script>
+
+</body>
+</html>
